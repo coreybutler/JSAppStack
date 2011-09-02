@@ -1,6 +1,7 @@
 //Require the HTTP module
 var http	= require('http'),
 	colors	= require('colors'),
+	sys=require('sys');
 	port	= 80;
 
 //Create the server
