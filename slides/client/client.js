@@ -6,7 +6,7 @@ Ext.onReady(function() {
         titleSelector: 'h3',
         selfGuidedText: '[ Now in self-guided mode. <a href="#">Rejoin</a> the presentation. ]',
         syncText: 'Synced to the server. Sit back and enjoy!',
-        wrapSlides: false  // wrap to the beginning after the last slide
+        wrapSlides: true  // wrap to the beginning after the last slide
     };
     
     var slideshow = new Ext.ux.Carousel('slides', {

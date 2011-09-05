@@ -14,6 +14,7 @@
     </head>
 
     <body>
+        <div id="wm">Austin Sencha Meetup</div>
         <div id="slides">
             <div id="title-slide" class="slide">
                 <h3>NoSQL, SSJS &amp; Sencha<br><span class="">JS APP ARCHITECTURE</span></h3>
@@ -25,29 +26,248 @@
             </div>
             
     		<div class="slide">
-    		    <h3>Slide 1</h3>
+    		    <h3>Corey Butler</h3>
     		    <ul>
-    		        <li>List item 1</li>
-                    <li>List item 2</li>
-                    <li>List item 3</li>
+                    <li>15yrs+ Web Experience</li>
+                    <li>Founder @ Ecor Systems, LLC</li>
+                    <li>Chief Consultant @ Ecor Group (we’re on senchadevs.com)</li>
+                    <li>DW/BI & Web Practices</li>
+                </ul>
+                <ul>
+                    <li>Ext JS Since v2</li>
+                    <li>Started in the Adobe, Microsoft, & IBM worlds</li>
+                    <li>Started in Fortune 500, Entrepreneur since 2000</li>
     		    </ul>
-                <p>Some other text here.</p>
+                 <h4>Available via:</h4>
+                 <ul>
+                    <li>Blog: <a href="http://coreybutler.com" target="_blank">coreybutler.com</a></li>
+                    <li>Twitter: <a href="https://twitter.com/#!/goldglovecb" target="_blank">@goldglovecb</a></li>
+                    <li>LinkedIn: <a href="http://www.linkedin.com/in/ecorsystems" target="_blank">ecorsystems</a></li>
+                </ul>
     		</div>
             
             <div class="slide">
-                <h3>Slide 2</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris justo. 
-                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere 
-                cubilia Curae; Proin odio sapien, sagittis id, sollicitudin eget, scelerisque 
-                et, nibh. Vestibulum faucibus, erat at varius dapibus, magna ante consectetur.</p>
+                <h3>Agenda</h3>
+                <ul>
+                    <li>NoSQL Overview</li>
+                    <li>SSJS Overview</li>
+                    <li>The Sencha Stack</li>
+                    <li>Simple Examples</li>
+                </ul>
             </div>
             
             <div class="slide">
-                <h3>Slide 3</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris justo. 
-                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere 
-                cubilia Curae; Proin odio sapien, sagittis id, sollicitudin eget, scelerisque 
-                et, nibh. Vestibulum faucibus, erat at varius dapibus, magna ante consectetur.</p>
+                <h3>The Stack</h3>
+                <div class="stack-diagram">
+                    <div>UI: Sencha</div>
+                    <div>Controller: SSJS</div>
+                    <div>Persistance: NoSQL</div>
+                </div>
+                <p>The concept isn’t much different from traditional web architecture.</p>
+            </div>
+            
+            <div class="slide">
+                <h3>What is NoSQL?</h3>
+                <ul>
+                    <li>No defined relationships.</li>
+                    <li>No schemas or fixed types.</li>
+                    <li>NoACID?</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>What NoSQL Is NOT</h3>
+                <ul>
+                    <li>Hard &amp; fast RDBMS replacement</li>
+                    <li>All-purpose data storage</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>NoSQL vs SQL: Features</h3>
+                <div style="float:left;width:49%;">
+                    <h4>NoSQL</h4>
+                    <ul>
+                        <li>Goal Specific</li>
+                        <li>Non-relational</li>
+                        <li>Map/Reduce</li>
+                        <li>Known Data Structure!</li>
+                        <li>No NULLS</li>
+                    </ul>
+                </div>
+                <div style="float:right;width:49%;">
+                    <h4>SQL</h4>
+                    <ul>
+                        <li>Generic</li>
+                        <li>RDBMS</li>
+                        <li>ANSI SQL</li>
+                        <li>Predefined Data Structure</li>
+                        <li>NULLS</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <h3>NoSQL vs SQL: Syntax</h3>
+                <div style="float:left;width:49%;">
+                    <h4>NoSQL</h4>
+                    <pre><code>function(doc) {
+    if ( doc.date < Date() && typeof
+            doc.somefield !== undefined ) {
+        var resultObject = { 
+            id: doc.pk, 
+            value: doc.somefield
+        };
+        emit(resultObject);
+    }
+}</code></pre>
+                </div>
+                <div style="float:right;width:49%;">
+                    <h4>SQL</h4>
+                    <pre><code>SELECT  a.pk as id, a.somefield as value
+FROM    TblA a INNER JOIN TblB b 
+        ON a.pk = b.fk
+WHERE   a.somevalue IN 
+        ( SELECT someval FROM TblC )
+        AND b.date < CURRENT_TIMESTAMP
+        AND a.somefield <> null</code></pre>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <h3>Popular Choices</h3>
+                <ul>
+                    <li><span class="hl">CouchDB</span> &rarr; Doc Store</li>
+                    <li><span class="hl">MongoDB</span> &rarr; Doc Store w/ Key/Value</li>
+                    <li><span class="hl">Redis</span> &rarr; Key/Value (In Memory)</li>
+                    <li><span class="hl">Riak</span> &rarr; Dynamo-like (Commercial)</li>
+                    <li><span class="hl">Hadoop</span> &rarr; Big Data</li>
+                    <li><span class="hl">Cassandra</span> &rarr; BigTable</li>
+                </ul>
+                <p>CONSTANTLY GROWING</p>
+                <p><a href="http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis" target="_blank">kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis</a></p>
+            </div>
+            
+            <div class="slide">
+                <h3>Storage Types</h3>
+                <ul>
+                    <li><span class="hl">Key/Value</span><p style="margin-top:0;">Schemaless. Where is data stored? Disk? Memory? Distributed?</p></li>
+                    <li><span class="hl">Document</span><p style="margin-top:0;">Like Key/Value, but semi-structured.</p></li>
+                    <li><span class="hl">Graph</span><p style="margin-top:0;">Based on graph theory. Focuses more on relationships between objects than the objects themselves.</p></li>
+                    <li><span class="hl">Column/Wide</span><p style="margin-top:0;">Key pointing to multiple columns (like rows in an RDBMS)</p></li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Title</h3>
+                <ul>
+                
+                </ul>
             </div>
         </div>
     </body>
