@@ -1,0 +1,43 @@
+* {
+    font-family: arial;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    font-size: 1.5em;
+}
+#slides {
+    height: 100%;
+    width: 100%;
+}
+.slide {
+    padding: 50px 30px 30px;
+}
+.slide li {
+    margin-bottom: 10px;
+}
+.slide h3 {
+    font-size: 2em;
+    margin: 0;
+}
+.ux-carousel-sync-msg {
+    position: absolute;
+    padding: 0 5px;
+    left: 100px;
+    top: 7px;
+    font-size: 13px;
+    color: #555;
+}
+.ux-carousel-sync-msg a,
+.ux-carousel-sync-msg a:visited {
+    color: #33c;
+    font-weight: bold;
+}
+
+.ux-carousel-caption {
+    color: #339;
+}
