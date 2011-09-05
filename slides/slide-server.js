@@ -11,7 +11,6 @@ var state = 0;
 // it could easily be extended to manage state uniquely for multiple
 // slideshows, each with multiple clients simultaneously.
 var clientConfigured = false,
-    clientTitle = '',
     slideCount = 0,
     wrap = false;
 
@@ -24,7 +23,6 @@ app.listen(1987);
 io.sockets.on('connection', function(socket) {
     socket.on('config', function(o) {
         console.log('received client config');
-        clientTitle = o.title || '';
         slideCount = o.slideCount || 99;
         wrap = o.wrap;
         clientConfigured = true;

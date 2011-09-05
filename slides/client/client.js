@@ -1,6 +1,6 @@
 Ext.onReady(function() {
     var config = {
-        serverUrl: 'http://localhost:1987', 
+        serverUrl: 'http://' + location.hostname + ':1987', 
         slideSelector: '.slide',
         titleSlideId: 'title-slide',
         titleSelector: 'h3',
@@ -13,7 +13,7 @@ Ext.onReady(function() {
         itemSelector: '.slide',
         //transitionType: 'fade',
         transitionDuration: .3,
-        transitionEasing: 'easeIn',
+        transitionEasing: 'easeOut',
         pagingCaption: true,
         wrap: config.wrapSlides
     });
@@ -90,11 +90,9 @@ Ext.onReady(function() {
     
     socket.on('config', function() {
         var slides = Ext.select(config.slideSelector),
-            count = slides.getCount(),
-            title = Ext.get(config.titleSlideId).child(config.titleSelector).dom.innerHTML;
+            count = slides.getCount();
         
         socket.emit('config', {
-            title: title,
             slideCount: count,
             wrap: config.wrapSlides
         });
