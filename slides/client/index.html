@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Slides</title>		
+        
+    	<link href="lib/carousel.css" rel="stylesheet" />
+        <link href="client.css" rel="stylesheet" />
+        
+        <script type="text/javascript" src="http://192.168.1.2:1987/socket.io/socket.io.js"></script>
+    	<script type="text/javascript" src="lib/ext-core-debug.js"></script>
+        <script type="text/javascript" src="lib/carousel.js"></script>
+        <script type="text/javascript" src="client.js"></script>
+    </head>
+
+    <body>
+        <div id="wm">Austin Sencha Meetup</div>
+        <div id="slides">
+            <div id="title-slide" class="slide">
+                <h3>NoSQL, SSJS &amp; Sencha<br><span class="">JS APP ARCHITECTURE</span></h3>
+                <p style="margin-bottom:60px;">Connect to: <span class="hl">http://192.168.1.2/slides</span></p>
+                <div class="info">
+                    <p>By Corey Butler</p>
+                    <p>Austin Sencha Meetup</p>
+                    <p>September 6, 2011</p>
+                </div>
+            </div>
+            
+            <div class="slide section">
+                <h3>Introduction</h3>
+            </div>
+            
+    		<div class="slide">
+    		    <h3>Corey Butler</h3>
+    		    <ul>
+                    <li>15yrs+ Web Experience</li>
+                    <li>Founder @ Ecor Systems, LLC</li>
+                    <li>Chief Consultant @ Ecor Group (we’re on senchadevs.com)</li>
+                    <li>DW/BI & Web Practices</li>
+                </ul>
+                <ul>
+                    <li>Ext JS Since v2</li>
+                    <li>Started in the Adobe, Microsoft, & IBM worlds</li>
+                    <li>Started in Fortune 500, Entrepreneur since 2000</li>
+    		    </ul>
+                 <h4>Available via:</h4>
+                 <ul>
+                    <li>Blog: <a href="http://coreybutler.com" target="_blank">coreybutler.com</a></li>
+                    <li>Twitter: <a href="https://twitter.com/#!/goldglovecb" target="_blank">@goldglovecb</a></li>
+                    <li>LinkedIn: <a href="http://www.linkedin.com/in/ecorsystems" target="_blank">ecorsystems</a></li>
+                </ul>
+    		</div>
+            
+            <div class="slide">
+                <h3>Agenda</h3>
+                <ul>
+                    <li>NoSQL Overview</li>
+                    <li>Server-side JavaScript (SSJS) Overview</li>
+                    <li>The Sencha Stack (Ext JS / Sencha Touch)</li>
+                    <li>Simple Examples</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>The Stack</h3>
+                <div class="stack-diagram">
+                    <div><span class="hl">UI</span>: Sencha</div>
+                    <div><span class="hl">Controller</span>: SSJS</div>
+                    <div><span class="hl">Persistance</span>: NoSQL</div>
+                    <p>The concept isn’t very different from <br>traditional web architecture.</p>
+                </div>
+            </div>
+            
+            <div class="slide section">
+                <h3>NoSQL Overview</h3>
+            </div>
+            
+            <div class="slide">
+                <h3>What is a NoSQL DB?</h3>
+                <p>A database system that has...</p> 
+                <ul>
+                    <li>No SQL (literally)</li>
+                    <li>No defined relationships</li>
+                    <li>No schemas or fixed types</li>
+                </ul>
+                <p>NoACID?</p>
+            </div>
+            
+            <div class="slide">
+                <h3>What NoSQL Is <em>NOT</em></h3>
+                <ul>
+                    <li>Hard &amp; fast RDBMS replacement</li>
+                    <li>All-purpose data storage</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>NoSQL vs SQL: <span class="hl">Features</span></h3>
+                <div style="float:left;width:49%;">
+                    <h4>NoSQL</h4>
+                    <ul>
+                        <li>Goal-specific</li>
+                        <li>Non-relational</li>
+                        <li>Map/Reduce</li>
+                        <li>Known data structure!</li>
+                        <li>No NULLS</li>
+                    </ul>
+                </div>
+                <div style="float:right;width:49%;">
+                    <h4>SQL</h4>
+                    <ul>
+                        <li>Generic</li>
+                        <li>RDBMS</li>
+                        <li>ANSI SQL</li>
+                        <li>Predefined Data Structure</li>
+                        <li>NULLS</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <h3>NoSQL vs SQL: <span class="hl">Syntax</span></h3>
+                <div style="float:left;width:49%;">
+                    <h4>NoSQL (CouchDB)</h4>
+                    <pre><code>function(doc) {
+    if ( doc.date < Date() && typeof
+            doc.somefield !== undefined ) {
+        var resultObject = { 
+            id: doc.pk, 
+            value: doc.somefield
+        };
+        emit(resultObject);
+    }
+}</code></pre>
+                </div>
+                <div style="float:right;width:49%;">
+                    <h4>Traditional SQL</h4>
+                    <pre><code>SELECT  a.pk as id, a.somefield as value
+FROM    TblA a INNER JOIN TblB b 
+        ON a.pk = b.fk
+WHERE   a.somevalue IN 
+        ( SELECT someval FROM TblC )
+        AND b.date < CURRENT_TIMESTAMP
+        AND a.somefield <> null</code></pre>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <h3>Popular Choices</h3>
+                <ul>
+                    <li><span class="hl">CouchDB</span> &rarr; Doc Store</li>
+                    <li><span class="hl">MongoDB</span> &rarr; Doc Store w/ Key/Value</li>
+                    <li><span class="hl">Redis</span> &rarr; Key/Value (In Memory)</li>
+                    <li><span class="hl">Riak</span> &rarr; Dynamo-like (Commercial)</li>
+                    <li><span class="hl">Hadoop</span> &rarr; Big Data</li>
+                    <li><span class="hl">Cassandra</span> &rarr; BigTable</li>
+                </ul>
+                <p>CONSTANTLY GROWING!</p>
+            </div>
+            
+            <div class="slide">
+                <h3>Storage Types</h3>
+                <ul class="heading-list">
+                    <li><h4>Key/Value</h4><p>Schemaless. <em><strong>Where</strong></em> is data stored? Disk? Memory? Distributed?</p></li>
+                    <li><h4>Document</h4><p>Like Key/Value, but semi-structured.</p></li>
+                    <li><h4>Graph</h4><p>Based on graph theory. Focuses more on relationships between objects than the objects themselves.</p></li>
+                    <li><h4>Column/Wide</h4><p>Key pointing to multiple columns (like rows in an RDBMS)</p></li>
+                </ul>
+            </div>
+            
+            <div class="slide section">
+                <h3>Server-Side JavaScript</h3>
+            </div>
+            
+            <div class="slide">
+                <h3>Background</h3>
+                <ul>
+                    <li>SSJS was first introduced via Netscape LiveWire in 1996, but really didn’t become practical for many until 2009.</li>
+                    <li>Gaining popularity because:</li>
+                    <ul>
+                        <li>Faster JS Engines like Google’s V8 (Chrome), Spidermonkey (Firefox) &amp; Rhino (Firefox)</li>
+                        <li>Maturity of JavaScript/ECMAScript</li>
+                        <li>Standards like CommonJS</li>
+                    </ul>
+                    <li>Useful for event-driven apps</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>CommonJS</h3>
+                <ul>
+                    <li>Aims to standardize JS outside the browser</li>
+                    <li>Best practices / metadata / specs</li>
+                    <li>Cross-compatibility</li>
+                    <li>Supports concepts like modules, file system references, exports, and other common requirements for serving applications</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>SSJS Platforms</h3>
+                <ul class="heading-list">
+                    <li><h4>Narwhal</h4><p>Most complete CommonJS implementation. Based on Rhino with JSGI Middleware.</p></li>
+                    <li><h4>NodeJS</h4><p>Non-blocking & single threaded (fast). Implements some CommonJS. Based on V8. Large and growing community.</p></li>
+                    <li><h4>Others</h4><p>Jaxer, Jack, 10gen App Server</p></li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>NodeJS</h3>
+                <blockquote><span class="quote-open">&ldquo;</span>Node.js is a server-side JavaScript environment that uses an asynchronous event-driven model. 
+                This allows Node.js to get excellent performance based on the architectures of many Internet applications.<br>
+                <p class="quote-source">&mdash; nodejs.org</p></blockquote>
+                <p style="text-align: center;"><span class="hl">Nutshell</span>: Create apps, like web servers</p>
+            </div>
+            
+            <div class="slide">
+                <h3>Example Web Server</h3>
+                <pre><code>// Require the HTTP module
+var http   = require('http'),
+    colors = require('colors'),
+    port   = 80;
+
+// Create the server
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
+}).listen(port, "127.0.0.1");
+
+// Indicate the server is running
+console.log('Server running at http://127.0.0.1:'.green+
+    port.toString().cyan+'/'.green);</code></pre>
+            </div>
+            
+            <div class="slide">
+                <h3>NodeJS Modules</h3>
+                <ul>
+                    <li>Modules are plugins for Node</li>
+                    <li>Lots of work already done for you</li>
+                    <li>No governed quality control</li>
+                    <li>Hundreds of modules</li>
+                    <li class="hl">npm is your friend</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>npm: Node Package Manager</h3>
+                <ul>
+                    <li><a href="http://npmjs.org" target="_blank">http://npmjs.org</a></li>
+                    <li>Install / publish Node modules</li>
+                    <li>Manages dependencies and upgrades</li>
+                    <li>Extremely simple, e.g.: <pre><code>  npm install express</code></pre></li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Popular Middleware</h3>
+                <ul class="heading-list">
+                    <li><h4>Connect</h4><p>Low-level http / app server</p></li>
+                    <li><h4>Express</h4><p>Built on Connect, good for serving websites.<br>Has many useful plugins like templating (e.g. Jade), SASS, etc.</p></li>
+                    <li><h4>Journey</h4><p>Better for serving JSON APIs</p></li>
+                    <li><h4>everyauth</h4><p>Authentication to third-party web services (OAuth, Facebook, Twitter, etc.)</p></li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Tying to Sencha</h3>
+                <ul>
+                    <li>Connect is part of Sencha Labs</li>
+                    <li>Express is built on Connect</li>
+                    <li>It's all JavaScript!</li>
+                </ul>
+            </div>
+            
+            <div class="slide section">
+                <h3>Demos</h3>
+            </div>
+            
+            <div class="slide">
+                <h3>Example App Stacks</h3>
+                <p>See <a href="https://github.com/coreybutler/JSAppStack" target="_blank">https://github.com/coreybutler/JSAppStack</a> for setup</p>
+                <ul class="heading-list">
+                    <li><h4>Couch Q&amp;A</h4><p>Ext JS &rarr; CouchDB<br>Uses a custom REST proxy</p></li>
+                    <li><h4>Mongo Q&amp;A</h4><p>Ext JS &rarr; NodeJS &rarr; MongoDB<br>Uses REST proxy, Express, Mongoose</p></li>
+                    <li><h4>This slide deck!</h4><p>Ext Core &rarr; NodeJS (session state)<br>Uses Express, Socket.io</p></li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>Node Hotness</h3>
+                <ul>
+                    <li>Socket.IO &rarr; Web Sockets</li>
+                    <ul>
+                        <li>Comparable to HTML5 SSE (Comet)</li>
+                        <li>Dnode, NowJS</li>
+                    </ul>
+                    <li>Highly-concurrent apps</li>
+                    <li>Easy REST development</li>
+                    <li>Server-side headless browsers</li>
+                    <li>Community &amp; momentum</li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <h3>References</h3>
+                <ul class="heading-list">
+                    <li><h4>NodeJS</h4>
+                        <p>NodeJS: <a href="http://nodejs.org" target="_blank">http://nodejs.org</a><br>
+                        NodeJS Modules: <a href="https://github.com/joyent/node/wiki/modules" target="_blank">https://github.com/joyent/node/wiki/modules</a><br>
+                        Node Package Manager (npm): <a href="http://npmjs.org" target="_blank">http://npmjs.org</a><br>
+                        Express: <a href="http://expressjs.com" target="_blank">http://expressjs.com</a></p>
+                    </li>
+                    <li><h4>NoSQL References</h4>
+                        <p>Compare: <a href="http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis" target="_blank">http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis</a><br>
+                        Mongoose (MongoDB Schema): <a href="http://mongoosejs.com" target="_blank">http://mongoosejs.com</a><br>
+                        Socket IO: <a href="http://socket.io" target="_blank">http://socket.io</a></p>
+                    </li>
+                    <li><h4>Free NoSQL Databases</h4>
+                        <p>CouchDB: <a href="http://www.iriscouch.com" target="_blank">http://www.iriscouch.com</a><br>
+                        MongoDB: <a href="http://www.mongohq.com" target="_blank">http://www.mongohq.com</a><br>
+                        Redis: <a href="http://www.redistogo.com" target="_blank">http://www.redistogo.com</a></p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="slide">
+                <div style="margin:50px;text-align:center;">
+                    <p style="font-size:2em;">Thanks!</p>
+                
+                    <p style="margin-bottom:50px;">Make sure you're following us!</p>
+                    
+                    <p><span class="hl">Sencha-Austin.org</span><br><a href="http://sencha-austin.org" target="_blank">http://sencha-austin.org</a></p>
+                    <p><span class="hl">Twitter</span><br><a href="http://www.twitter.com/SenchaATX" target="_blank">http://www.twitter.com/SenchaATX</a></p>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
