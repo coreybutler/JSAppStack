@@ -1,4 +1,5 @@
-var Schema 			= require('mongoose').Schema;
+var Schema 			= require('mongoose').Schema,
+	Person			= require('./Person');
 
 /**
  * Represents a question/answer.

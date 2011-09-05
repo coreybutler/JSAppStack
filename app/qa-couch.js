@@ -84,8 +84,10 @@ Ext.define('Question',{
 			root: 'rows',
 			record: 'value',
 			idProperty: '_id',
-			successProperty: 'ok',
 			totalProperty: 'total_rows'
+			
+			// 
+			//successProperty: 'ok'
 		},
 		
 		//Custom Writer
