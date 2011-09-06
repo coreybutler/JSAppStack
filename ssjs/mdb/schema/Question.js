@@ -1,5 +1,5 @@
-var Schema 			= require('mongoose').Schema,
-	Person			= require('./Person');
+var Schema 			= require('mongoose').Schema;
+	//Person			= require('./Person');
 
 /**
  * Represents a question/answer.
@@ -24,10 +24,10 @@ exports.Question = Question = new Schema({
 	a: { type: String, required: false },
 	
 	//The date when the question was asked.
-	d: { type: Date, required: true, index: true, 'default': Date.now },
+	d: { type: Date, required: true, index: true, 'default': Date.now }
 	
 	//Optional question author
-	p: [Person]
+	//p: [Person]
 	
 });
 
