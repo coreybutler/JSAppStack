@@ -6,8 +6,13 @@
         
     	<link href="lib/carousel.css" rel="stylesheet" />
         <link href="client.css" rel="stylesheet" />
+        <script type="text/javascript">
+        	
+        	var serverip = '10.51.30.6';
+        	document.getElementById('serverip').innerHTML = serverip;
         
-        <script type="text/javascript" src="http://192.168.1.2:1987/socket.io/socket.io.js"></script>
+        </script>
+        <script type="text/javascript" src="http://10.51.30.6:1987/socket.io/socket.io.js"></script>
     	<script type="text/javascript" src="lib/ext-core-debug.js"></script>
         <script type="text/javascript" src="lib/carousel.js"></script>
         <script type="text/javascript" src="client.js"></script>
@@ -18,7 +23,7 @@
         <div id="slides">
             <div id="title-slide" class="slide">
                 <h3>NoSQL, SSJS &amp; Sencha<br><span class="">JS APP ARCHITECTURE</span></h3>
-                <p style="margin-bottom:60px;">Connect to: <span class="hl">http://192.168.1.2/slides</span></p>
+                <p style="margin-bottom:60px;">Connect to: <span class="hl">http://<div id="serverip"></div>/slides</span></p>
                 <div class="info">
                     <p>By Corey Butler</p>
                     <p>Austin Sencha Meetup</p>
