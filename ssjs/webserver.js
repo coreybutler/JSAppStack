@@ -4,8 +4,8 @@ var http	= require('http'),
 	express	= require('express'),
 	app		= express.createServer(),
 	cfg		= require('./config');
-	
-	
+
+
 //App Configuration
 app.use( function ( req, res, next ) {
 	res.removeHeader('X-Powered-By');
@@ -20,16 +20,16 @@ app.use(express.static(__dirname + '/../'));
 
 //Basic GET
 app.get('/', function(req,res){
-	
+
 	//Ref expressjs.com
-	
+
 	//Really simple output
 	//res.send('hello world');
-	
+
 	//JSON output
 	res.contentType('application/json');
 	res.send({test:'json goes here.'});
-	
+
 	//Standard HTTP Status Code
 	//res.send(501);
 });

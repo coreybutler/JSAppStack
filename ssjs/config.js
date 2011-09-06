@@ -1,10 +1,10 @@
 module.exports = exports = {
 	
 	webport:	81,
-	couchport:	8000,
 	mongoport:	80,
 	
-	couchserver: 'coreybutler.iriscouch.com',
+	//couchserver: 'coreybutler.iriscouch.com',
+	couchserver: 'localhost:5984',
 	
 	mongo:		{
 					server:		'staff.mongohq.com',

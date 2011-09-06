@@ -3,7 +3,8 @@ var http	= require('http'),
 	webproxy= require('http-proxy'),
 	cfg		= require('./config'),
 	express	= require('express'),
-	app		= express.createServer();
+	app		= express.createServer(),
+	cdbport	= cfg.couchserver.split(':').length > 1 ? cfg.couchserver.split(':')[cfg.couchserver.split(':').length-1] : 80;
 
 
 
@@ -41,16 +42,15 @@ webproxy.createServer(function (req, res, proxy) {
 
 		//Set the host header to bypass any cross domain limitations
 		req.headers.host = cfg.couchserver;
-		
+
 		//Proxy the request to the Couch Server
 		proxy.proxyRequest( req, res, {
-			host: cfg.couchserver,
-			port: 80//,
-			//headers
+			host: cfg.couchserver.split(':')[0],
+			port: cdbport
 		});
 		
 	}
     
 }).listen(80);
 console.log('\n--> Proxying standard web requests to port '.cyan+cfg.webport.toString().bold.red);
-console.log('--> Proxying DB requests to '.cyan+cfg.couchserver.bold.yellow+'\n\n'+'LIVE MONITORING'.underline.yellow+'\n');
+console.log('--> Proxying DB requests to '.cyan+cfg.couchserver.bold.yellow+':'.yellow+cdbport.toString().bold.yellow+'\n\n'+'LIVE MONITORING'.underline.yellow+'\n');
