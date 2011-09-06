@@ -1,3 +1,11 @@
+/*
+ * Code derived from a similar example by Tim Branyan
+ * from the following blog post:
+ * 
+ *   http://weblog.bocoup.com/synchronizing-html5-slides-with-node-js
+ * 
+ */
+
 // Required dependancies
 var app = require('express').createServer();
 var io = require('socket.io').listen(app);
