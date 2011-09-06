@@ -6,9 +6,9 @@ The example code in this repository is part of the presentation given to the Aus
 1. Clone (or fork) this repo (you'll end up with something like `[your root]/JSAppStack/`)
 2. Install [Node](http://nodejs.org) if needed. Note that these demos were built with version 0.4.11.
 3. Install [npm](http://npmjs.org) if needed. These demos require version 1.0.0 or greater (currently 1.0.26).
-3. Install the following npm modules (from the `JSAppStack/ssjs/` directory):
+4. Install the following npm modules (from the `JSAppStack/ssjs/` directory):
 
-	npm install express mongoose colors http-proxy 
+	npm install express mongoose colors http-proxy
 
 You should end up with something like this in the console:
 
@@ -90,7 +90,7 @@ In your browser, navigate to [http://localhost/mongo.htm](http://localhost/mongo
 
 ### Socket.io
 
-The slide deck that accompanies this overview was implemented in these technologies as well. The content is basic HTML, presented via an Ext JS front end and powered on the back end by Node and Socket.io for real-time, two-way communication between the server and multiple clients. The details for the slide deck demo are [included](slides/Readme.md) in the `slides/` folder.
+The slide deck that accompanies this overview was implemented in these technologies as well. The content is basic HTML, presented via an Ext JS front end and powered on the back end by Node and Socket.io for real-time, two-way communication between the server and multiple clients. The details for the slide deck demo are [included](https://github.com/coreybutler/JSAppStack/slides/Readme.md) in the `slides/` folder.
 
 ## Wrapping Up
 
