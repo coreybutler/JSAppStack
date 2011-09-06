@@ -17,6 +17,7 @@ var clientConfigured = false,
 // Listen on some high level port to avoid dealing
 // with authbind or root user privileges.
 app.listen(1987);
+console.log('slide-server now listening on port 1987...');
 
 // For each connection made add the client to the
 // list of clients.
