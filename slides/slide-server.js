@@ -27,8 +27,7 @@ var clientConfigured = false,
 app.listen(1987);
 console.log('slide-server now listening on port 1987...');
 
-// For each connection made add the client to the
-// list of clients.
+// For each connection do some setup and initial sync
 io.sockets.on('connection', function(socket) {
     socket.on('config', function(o) {
         console.log('received client config');
@@ -61,7 +60,7 @@ function nav(response) {
     response.send(state);
 }
 
-// Advancing will... move the slides forward!
+// Next will... move the slides forward!
 app.get('/next', function(req, res) {
   // Increment and send over socket
   state++;
@@ -71,7 +70,7 @@ app.get('/next', function(req, res) {
   nav(res);
 });
 
-// Receding will... move the slides backwards!
+// Previous will... move the slides backwards!
 app.get('/previous', function(req, res) {
   state--;
   if (state < 0) {
@@ -80,17 +79,22 @@ app.get('/previous', function(req, res) {
   nav(res);
 });
 
-// Reset will not refresh cornfication, but
-// will send the slides back to the beginning.
+// Reset to the first slide
 app.get('/reset', function(req, res) {
   state = 0;
   nav(res);
 });
 
-// Send the controller for any other request to this
-// Node.js server.
+// Handle other requests
 app.get('*', function(req, res) {
-  fs.readFile('controller.html', function(err, buffer) {
+  var ua = req.headers['user-agent'],
+      controller = 'controller.html';
+      
+  if (ua && ua.toLowerCase().indexOf('iphone') > -1) {
+      // redirect to a Touch-optimized controller for iPhone user agents
+      controller = 'controller-touch.html';
+  }
+  fs.readFile(controller, function(err, buffer) {
     res.send(buffer.toString());
   });
 });
