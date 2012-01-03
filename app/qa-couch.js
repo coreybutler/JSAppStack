@@ -12,7 +12,6 @@ Ext.define('Question',{
 	
 	fields: [
 		{ name: '_id',	optional: false, defaultValue: null, type: 'string' },
-		{ name: '_rev',	optional: true, defaultValue: null, type: 'string' },
 		{ name: 'q',	optional: true, defaultValue: null, type: 'string' },
 		{ name: 'a',	optional: true, defaultValue: null, type: 'string' }
 	],

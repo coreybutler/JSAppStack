@@ -7,7 +7,12 @@
  */
 
 // Required dependancies
+var express= require('express');
 var app = require('express').createServer();
+var web = express.createServer(
+	express.static(__dirname + '/')
+);
+console.log(__dirname);
 var io = require('socket.io').listen(app);
 var fs = require('fs');
 
@@ -62,6 +67,7 @@ function nav(response) {
 
 // Next will... move the slides forward!
 app.get('/next', function(req, res) {
+	console.log('test 2');
   // Increment and send over socket
   state++;
   if (state > (slideCount-1)) {
@@ -99,6 +105,9 @@ app.get('*', function(req, res) {
   });
 });
 
+web.listen(80);
+console.log('Webserver running on port 80');
+
 
 //Presentation Specific Code
 app.get('/server', function(req,res) {
@@ -108,57 +117,3 @@ app.get('/server', function(req,res) {
 		res.end(ip);
 	}, false);
 });
-
-var getNetworkIP = (function () {
-    var ignoreRE = /^(127\.0\.0\.1|::1|fe80(:1)?::1(%.*)?)$/i;
-
-    var exec = require('child_process').exec;
-    var cached;    
-    var command;
-    var filterRE;
-
-    switch (process.platform) {
-    // TODO: implement for OSs without ifconfig command
-    case 'darwin':
-         command = 'ifconfig';
-         filterRE = /\binet\s+([^\s]+)/g;
-         // filterRE = /\binet6\s+([^\s]+)/g; // IPv6
-         break;
-    default:
-         command = 'ifconfig';
-         filterRE = /\binet\b[^:]+:\s*([^\s]+)/g;
-         // filterRE = /\binet6[^:]+:\s*([^\s]+)/g; // IPv6
-         break;
-    }
-
-    return function (callback, bypassCache) {
-         // get cached value
-        if (cached && !bypassCache) {
-            callback(null, cached);
-            return;
-        }
-        // system call
-        exec(command, function (error, stdout, sterr) {
-            var ips = [];
-            // extract IPs
-            var matches = stdout.match(filterRE);
-            // JS has no lookbehind REs, so we need a trick
-            for (var i = 0; i < matches.length; i++) {
-                ips.push(matches[i].replace(filterRE, '$1'));
-            }
-
-            // filter BS
-            for (var i = 0, l = ips.length; i < l; i++) {
-                if (!ignoreRE.test(ips[i])) {
-                    //if (!error) {
-                        cached = ips[i];
-                    //}
-                    callback(error, ips[i]);
-                    return;
-                }
-            }
-            // nothing found
-            callback(error, null);
-        });
-    };
-})();

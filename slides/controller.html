@@ -68,7 +68,7 @@
     buttons.forEach(function(button) {
       button.addEventListener('click', function() {
         //console.log('sending: '+server + button.value);
-        xhr(server + button.value);
+        xhr('http://192.168.23.174:1987/' + button.value);
       }, true);
     });
 

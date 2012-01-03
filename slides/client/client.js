@@ -1,6 +1,6 @@
 Ext.onReady(function() {
     var config = {
-        serverUrl: 'http://' + location.hostname + ':1987', 
+        serverUrl: 'http://192.168.23.174:1987/', 
         slideSelector: '.slide',
         titleSlideId: 'title-slide',
         titleSelector: 'h3',
@@ -85,6 +85,7 @@ Ext.onReady(function() {
     socket.on('sync', function(o) {
         selfGuided = false;
         slideshow.setSlide(o.page);
+        console.log('resync');
         resync();
     });
     

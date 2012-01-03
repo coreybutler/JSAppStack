@@ -1,5 +1,5 @@
 var cfg = {
-	db: 'http://localhost/mongo' //MongoDB
+	db: 'http://192.168.1.2/mongo' //MongoDB
 };
 
 
